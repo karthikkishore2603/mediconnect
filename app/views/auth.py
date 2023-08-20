@@ -7,7 +7,7 @@ from flask import (
     request,
 )
 
-from .. import app, crud, util, constants
+from .. import app, crud, util, constants, schemas
 from datetime import timedelta, datetime
 import pytz
 
@@ -31,11 +31,12 @@ def login():
 def login_verify():
     username = request.form.get("username")
     password = request.form.get("password")
-    role = request.form.get("role")
-    if not util.is_valid_password(username, password, role):
+    if not util.is_valid_password(username, password):
         return render_template("check.html")
     access_token_expires = timedelta(days=constants.ACCESS_TOKEN_EXPIRE_DAYS)
-
+    response = make_response(redirect(url_for("doctor_dashboard")))
+    return response
+    """
     if role == "admin":
         admin_login = crud.get_admin(username=username)
 
@@ -59,7 +60,7 @@ def login_verify():
 
     else:
         return render_template("check.html", error_message="Invalid user type")
-
+"""
 
 @app.get("/logout")
 def logout():

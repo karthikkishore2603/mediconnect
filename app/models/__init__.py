@@ -20,5 +20,4 @@ class Hospital(db.Model):
     hospital_username = Column(String(100), nullable=False)
     hospital_password = Column(String(100), nullable=False)
     
-
 db.create_all()
