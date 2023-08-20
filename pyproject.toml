@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "mediconnect"
+version = "0.1.0"
+description = ""
+authors = ["Pranav Raj H <vinstarpranav@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^2.3.2"
+sqlalchemy = "^2.0.20"
+jinja2 = "^3.1.2"
+flask-sqlalchemy = "^3.0.5"
+pymysql = "^1.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
