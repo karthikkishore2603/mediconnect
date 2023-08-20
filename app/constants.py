@@ -17,7 +17,7 @@ MYSQL_USER = "karthik"
 MYSQL_PASSWORD = "password"
 MYSQL_PORT = "localhost:3306"
 SQLALCHEMY_DATABASE_URL = (
-    f"pymysql+mysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_PORT}/{DATABASE_NAME}"
+    f"mysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_PORT}/{DATABASE_NAME}"
 )
 # create a database login first
 """
