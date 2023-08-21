@@ -35,3 +35,27 @@ def patient_add(data: dict) -> None:
 
 def get_all_patient() -> models.Patient:
     return models.Patient.query.all()
+
+
+#####################################################################################################################################3
+#####################################################################################################################################
+#####################################################################################################################################   
+#####################################################################################################################################3
+
+
+def get_patient_password(patient_phoneno: str) -> str:
+    password = models.Patient.query.filter_by(patient_phoneno=patient_phoneno).first()
+
+    if password:
+        return password.patient_password
+    else:
+        return None
+    
+def get_patient_phoneno(patient_phoneno: str) -> str:
+    phoneno = models.Patient.query.filter_by(patient_phoneno=patient_phoneno).first()
+
+    if phoneno:
+        return phoneno.patient_phoneno
+    else:
+        return None
+        

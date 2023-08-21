@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="login.css">
-    <title>Login Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='patient-app/patient_login.css') }}">
+    <title>Patient Login</title>
 </head>
 
 <body>
@@ -14,13 +14,14 @@
     </header>
     <main>
         <section class="registration-form">
-            <h2>Login Form</h2>
+            <h2>Welcome Back</h2>
             <form action="#" method="post">
-                <label>Name:</label><br>
-                <input type="text" id="firstName" placeholder="First Name" required><br>
+                <label>Phone No</label><br>
+                <input type="text" id="patient_phoneno" name="patient_phoneno" placeholder="Phone No" required><br>
                 <label>Password:</label><br>
-                <input type="password" id="password" placeholder="Password" required><br>
-                <button type="submit" id="registerButton">Login</button>
+                <input type="password" id="patient_password" name="patient_password" placeholder="Password" required><br>
+                <button type="submit" id="loginbutton">Login</button>
+                <p>Don't have an account? <a href="/patient/register">Register</a></p>
             </form>
         </section>
     </main>

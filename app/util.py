@@ -49,3 +49,9 @@ def get_current_user_login(token: str) -> Union[schemas.TokenData, None]:
     except JWTError:
         return None
     return token_data
+
+def is_patient_valid_password(patient_phoneno, patient_password):
+    if crud.get_patient_password(patient_phoneno) == patient_password:
+        return True
+    else:
+        return False

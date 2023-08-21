@@ -6,11 +6,29 @@ from .. import app, crud, util, models
 #from fpdf import FPDF
 #import pytz
 
-"""
-@app.get("/parient/dashboard")
-def doctor_dashboard():
-    return render_template("doctor_dashboard.html")
 
-@app.get("/doctor/apointment")
-def doctor_apointment():
-    return render_template("doctor_appointment.html")"""
+@app.get("/patient/register")
+def patient_register():
+    return render_template("patient_register.html")
+
+@app.post("/patient/register")
+def patient_register_post():
+    data = dict(request.form)
+    print(data)
+    if data.get("patient_password") != data.get("patient_confirm_password"):
+        return render_template("patient_register.html",error_message="Password and Confirm Password are not same")
+    dict.pop(data,'patient_confirm_password')
+
+    if data.get("patient_phoneno") == crud.get_patient_phoneno(data.get("patient_phoneno")):
+        return render_template("patient_register.html",error_message="Phone Number Already Exists")
+
+    try:
+        crud.patient_add(data)
+    except Exception as e:
+        print(e)
+        return render_template("patient_register.html",error_message="Phone Number Already Exists")
+    return redirect(url_for("patient_login"))
+
+@app.get("/patient/dashboard")
+def patient_dashboard():
+    return render_template("patient_appointment.html")

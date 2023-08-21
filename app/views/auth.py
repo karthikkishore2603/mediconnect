@@ -68,3 +68,18 @@ def logout():
     response = redirect(url_for("login"))
     response.set_cookie(constants.AUTH_TOKEN_COOKIE_NAME, "")
     return response
+
+
+@app.get("/patient/login")
+def patient_login():
+    return render_template("patient_login.html")
+
+@app.post("/patient/login")
+def patient_login_post():
+    patient_phoneno = request.form.get("patient_phoneno")
+    patient_password = request.form.get("patient_password")
+    if not util.is_patient_valid_password(patient_phoneno, patient_password):
+        return render_template("check.html")
+    access_token_expires = timedelta(days=constants.ACCESS_TOKEN_EXPIRE_DAYS)
+    response = make_response(redirect(url_for("patient_dashboard")))
+    return response
