@@ -32,7 +32,7 @@ def current_user_info(request: Request):
     login = get_current_user_login(token)
     if not login:
         return
-    return crud.get_doctor_by_id(login.id)
+    return crud.get_hospital_by_id(login.id)
     #raise NotImplementedError
 
 def get_current_user_login(token: str) -> Union[schemas.TokenData, None]:

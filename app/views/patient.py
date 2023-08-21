@@ -31,4 +31,8 @@ def patient_register_post():
 
 @app.get("/patient/dashboard")
 def patient_dashboard():
+    return render_template("patient_dashboard.html")
+
+@app.get("/patient/appoinment")
+def patient_appoinment():
     return render_template("patient_appointment.html")

@@ -18,8 +18,12 @@ def doctor_details(data: dict) -> None:
     db.session.commit()
     db.session.flush()
 
-def get_doctor_by_id(admin_id: int) -> models.Hospital:
-    return models.Hospital.query.filter_by(hospital_id=admin_id).first()
+def get_hospital_by_id(doctor_id: int) -> models.Hospital:
+    return models.Hospital.query.filter_by(hospital_id=doctor_id).first()
+
+
+def get_doctor_by_id(doctor_id: int) -> models.Doctor:
+    return models.Doctor.query.filter_by(doctor_id=doctor_id).first()
 
 def get_all_doctors() -> models.Doctor:
     return models.Doctor.query.all()

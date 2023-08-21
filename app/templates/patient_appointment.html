@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='patient-app/patient_appointment.css') }}">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='patient-app/patient_bottombar.css') }}">
     <title>Appointment Form</title>
 </head>
 <body>
@@ -68,11 +71,22 @@
                 </select>
 
                 <button type="submit">Book Appointment</button>
+                <br>
+                <br>
+                <br><br>
             </form>
         </section>
     </main>
+    
     <footer>
-        <p>&copy; 2023 MediConnect App. All rights reserved.</p>
+        <div class="bottombar">
+            <a href="{{ url_for('patient_dashboard' ) }}"><i class='bx bx-home-alt nav_logo'></i></a>
+            <a href="#"><i class='bx bx-user nav_logo'></i></a>
+            <a href="{{ url_for('patient_appoinment' ) }}"><i class='bx bx-briefcase nav_logo'></i></a>
+            <a href="#"><i class='bx bx-book nav_logo'></i></a>
+            <a href="#"><i class='bx bx-message-rounded nav_logo'></i></a>
+        </div>
     </footer>
+
 </body>
 </html>
