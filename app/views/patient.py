@@ -35,4 +35,5 @@ def patient_dashboard():
 
 @app.get("/patient/appoinment")
 def patient_appoinment():
-    return render_template("patient_appointment.html")
+
+    return render_template("patient_appointment.html",hs = crud.get_all_hospital())

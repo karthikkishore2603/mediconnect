@@ -28,6 +28,9 @@ def get_doctor_by_id(doctor_id: int) -> models.Doctor:
 def get_all_doctors() -> models.Doctor:
     return models.Doctor.query.all()
 
+def get_all_hospital() -> models.Hospital:
+    return models.Hospital.query.all()
+
 def patient_add(data: dict) -> None:
     
 

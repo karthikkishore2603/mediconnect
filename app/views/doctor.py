@@ -13,16 +13,14 @@ def doctor_dashboard():
 
 @app.get("/doctor/apointment")
 def doctor_apointment():
-    hospital = util.current_user_info(request)
-    print(hospital)
-    return render_template("doctor_appointment.html",hospital = hospital )
+    return render_template("doctor_appointment.html")
 
 @app.get("/doctor/details")
 def doctor_details():
     
     hospital = util.current_user_info(request)
     
-    print(hospital)
+    
     return render_template("doctor_details.html",a=hospital.hospital_id,doctors = crud.get_all_doctors()) 
 
 @app.post("/doctor/details")
@@ -42,7 +40,7 @@ def doctor_details_post():
 
 @app.get("/doctor/details/<doctor_id>")
 def get_doctor_by_id(doctor_id):
-    print( crud.get_doctor_by_id(doctor_id))
+    print(crud.get_doctor_by_id(doctor_id))
     return render_template("doctor_per_detail.html", doctor = crud.get_doctor_by_id(doctor_id))
 
 @app.get("/doctor/patient")
