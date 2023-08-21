@@ -35,5 +35,13 @@ def patient_dashboard():
 
 @app.get("/patient/appoinment")
 def patient_appoinment():
+    return render_template("patient_appointment.html",
+                           cities=crud.get_all_city())
 
-    return render_template("patient_appointment.html",hs = crud.get_all_hospital())
+@app.get("/patient/appoinment/get-hospitals")
+def patient_appoinment_get_hospitals():
+    city = request.args.get("city")
+    hospitals = crud.get_hospital_by_city(city)
+
+    return render_template("hospital_options.html",
+                            hospitals=hospitals)
