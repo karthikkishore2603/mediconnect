@@ -1,0 +1,147 @@
+{% extends "layout.html" %}
+{% block title %}COM CAR{%endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='dashboard-styles.css') }}" />
+<script src="https://kit.fontawesome.com/623b0bceda.js" crossorigin="anonymous"></script>
+{% endblock %}
+{% block inner_content %}
+
+
+{% include "sidebar.html" %}
+
+<div class="page-content p-4" id="content">
+<div class="main-container">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                        <div class="title">
+                            <h4><i class="micon dw dw-settings2 mtext"></i></h4>
+                        </div>
+
+
+    <div class="container-fluid right-content">
+        <!-- Add non-sidebar contents here -->
+
+        <h1 class="h2">Patient</h1>
+
+        
+        <!-- How to make this a popup? -->
+        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#add_task">Add Patient</button>
+        <form action="/doctor/patient" method="post">
+            <div class="input-group" style="padding-top: 10px;">
+                <input type="hidden" name="ftype" value="on" />
+                <div class="form-outline" style="padding-left: 10px;padding-bottom: 5px;">
+                    <label>Patient ID</label>
+                    <input type="search" size="5" placeholder="ID"form1" class="form-control" name="fdoctorid" />
+
+                </div>
+                <div class="form-outline" style="padding-left: 10px;padding-bottom: 5px;">
+                    <label>Patient Name</label>
+                    <input type="search" style="text-transform: capitalize;" size="7" placeholder="doctorname" id="form1" class="form-control" name="fdoctorname" />
+
+                </div>
+                
+                
+                <div>
+                    <br>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        
+        <form id="add" method="post">
+            <div id="add_task" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="1"
+                aria-labelledby="submitIdeaBackdropLabel" aria-hidden="true">
+                <!-- Popup contents, todo, make this actual pop on the prev button is clicked -->
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="submitIdeaBackdropLabel">Add Patient</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+             
+                            <div >
+                                <label>Patient Name</label>
+                                <input type="text"  style="text-transform: capitalize;"style="text-transform: capitalize;" list="patient_name" class="form-control" placeholder="Patient Name"
+                                    name="patient_name" required>
+                            </div>
+                            <div >
+                                <label>Patient PhNo.</label>
+                                <input type="text"  style="text-transform: capitalize;"list="patient_phoneno" class="form-control" placeholder="Phone No"
+                                    name="patient_phoneno" required>
+                                
+                            </div>
+                            
+                            
+
+                            <div >
+                                <label>DOB</label>
+                                <input type="date"  class="form-control" name="patient_dob" required>
+                            </div>
+
+                            <div >
+                                <label>Address</label>
+                                <input type="text"  style="text-transform: capitalize;"style="text-transform: capitalize;" list="patient_address" class="form-control" placeholder="Address"
+                                    name="patient_address" required>
+                            </div>
+
+                                
+                            
+                            <button type="submit" class="btn btn-dark">Add</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+        <div class="table-responsive">
+            <br>
+            <table id="myTable"class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Patient ID</th>
+                        <th scope="col">Patient Name</th>
+                        <th scope="col">Phone_no</th>
+                        <th scope="col">View</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% for ps in patients -%}
+                    <tr>
+                        <td>
+                            {{ ps.patient_id }}
+                        </td>
+                        <td>
+                            <p style="text-transform: capitalize;">{{ ps.patient_name }}</p>
+                        </td>
+                        <td>
+                            <p style="text-transform: capitalize;">{{ ps.patient_phoneno }}</p>
+                        </td>
+
+                        <td>
+
+                            <a><button role="button"
+                                    class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#viewtask">View</button></a>
+                        </td>
+                    </tr>
+
+                    {% endfor -%}
+                </tbody>
+            </table>
+
+        </div> 
+
+
+    </div>
+    </main>
+
+
+
+    {% endblock %}
