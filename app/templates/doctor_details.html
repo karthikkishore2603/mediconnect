@@ -1,0 +1,207 @@
+{% extends "layout.html" %}
+{% block title %}COM CAR{%endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='dashboard-styles.css') }}" />
+<script src="https://kit.fontawesome.com/623b0bceda.js" crossorigin="anonymous"></script>
+{% endblock %}
+{% block inner_content %}
+
+
+{% include "sidebar.html" %}
+
+<div class="page-content p-4" id="content">
+<div class="main-container">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                        <div class="title">
+                            <h4><i class="micon dw dw-settings2 mtext"></i></h4>
+                        </div>
+
+
+    <div class="container-fluid right-content">
+        <!-- Add non-sidebar contents here -->
+
+        <h1 class="h2">Doctor</h1>
+
+        
+        <!-- How to make this a popup? -->
+        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#add_task">Add Doctor</button>
+        <form action="/doctor/details" method="post">
+            <div class="input-group" style="padding-top: 10px;">
+                <input type="hidden" name="ftype" value="on" />
+                <div class="form-outline" style="padding-left: 10px;padding-bottom: 5px;">
+                    <label>Doctor ID</label>
+                    <input type="search" size="5" placeholder="ID"form1" class="form-control" name="fdoctorid" />
+
+                </div>
+                <div class="form-outline" style="padding-left: 10px;padding-bottom: 5px;">
+                    <label>Doctor Name</label>
+                    <input type="search" style="text-transform: capitalize;" size="7" placeholder="doctorname" id="form1" class="form-control" name="fdoctorname" />
+
+                </div>
+                
+                <div class="form-outline" style="padding-left: 10px;padding-bottom: 5px;">
+                    <label>Specialization</label>
+                    
+                <select class="form-control" name="fstype" > 
+                        <option value="">Select an Specialization</option>
+                        <option value="audiologists" id="audiologists">Audiologists</option>
+                        <option value="cardialogist" id="cardialogist">Cardialogist</option>
+                        <option value="dentist" id="dentist">Dentist</option>
+                        <option value="diabetes" id="diabetes">Diabetes</option>
+                        <option value="endocrinologist" id="endocrinologist">Endocrinologist</option>
+                        <option value="gynaecologist" id="">Gynaecologist</option>
+                        <option value="nephrologist" id="nephrologist">Nephrologist</option>
+                        <option value="neurologist" id="neurologist">Neurologist</option>
+                        <option value="oncologists" id="oncologists">Oncologists</option>
+                        <option value="ophthalmologist" id="ophthalmologist">Ophthalmologist</option>
+                        <option value="ortho" id="ortho">Ortho</option>
+                        <option value="otolaryngologist(ENT)" id="otolaryngologist(ENT)">Otolaryngologist(ENT)</option>
+                        <option value="pediatrician" id="pediatrician">Pediatrician</option>
+                        <option value="psychiatrists" id="psychiatrists">Psychiatrists</option>
+                        <option value="pulmonologist" id="pulmonologist">Pulmonologist</option>
+                        <option value="radiologist" id="radiologist">Radiologist</option>
+                       
+                </select>
+                </div>
+                
+                <div>
+                    <br>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        
+        <form id="add" method="post">
+            <div id="add_task" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="1"
+                aria-labelledby="submitIdeaBackdropLabel" aria-hidden="true">
+                <!-- Popup contents, todo, make this actual pop on the prev button is clicked -->
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="submitIdeaBackdropLabel">Add Doctor</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+             
+                            <div >
+                                <label>Doctor Name</label>
+                                <input type="text"  style="text-transform: capitalize;"style="text-transform: capitalize;" list="doctor_name" class="form-control" placeholder="Doctor Name"
+                                    name="doctor_name" required>
+                            </div>
+                            <div >
+                                <label>Doctor PhNo.</label>
+                                <input type="text"  style="text-transform: capitalize;"list="doctor_phoneno" class="form-control" placeholder="Phone No"
+                                    name="doctor_phoneno" required>
+                                
+                            </div>
+                            
+                            <div >
+                                <label>Doctor Email</label>
+                                <input type="text"  list="doctor_email" class="form-control" placeholder="Email"
+                                    name="doctor_email" required>
+                                
+                            </div>
+                            
+
+                            <div >
+                                <label>DOB</label>
+                                <input type="date"  class="form-control" name="doctor_dob" required>
+                            </div>
+
+                            <div >
+                                <label>Address</label>
+                                <input type="text"  style="text-transform: capitalize;"style="text-transform: capitalize;" list="doctor_address" class="form-control" placeholder="Address"
+                                    name="doctor_address" required>
+                            </div>
+
+                            <div >
+                                <label>Specialization</label>
+                                <select class="form-control" name="specialization" required> 
+                                    <option value="">Select an Specialization</option>
+                                    <option value="audiologists" id="audiologists">Audiologists</option>
+                                    <option value="cardialogist" id="cardialogist">Cardialogist</option>
+                                    <option value="dentist" id="dentist">Dentist</option>
+                                    <option value="diabetes" id="diabetes">Diabetes</option>
+                                    <option value="endocrinologist" id="endocrinologist">Endocrinologist</option>
+                                    <option value="gynaecologist" id="">Gynaecologist</option>
+                                    <option value="nephrologist" id="nephrologist">Nephrologist</option>
+                                    <option value="neurologist" id="neurologist">Neurologist</option>
+                                    <option value="oncologists" id="oncologists">Oncologists</option>
+                                    <option value="ophthalmologist" id="ophthalmologist">Ophthalmologist</option>
+                                    <option value="ortho" id="ortho">Ortho</option>
+                                    <option value="otolaryngologist(ENT)" id="otolaryngologist(ENT)">Otolaryngologist(ENT)</option>
+                                    <option value="pediatrician" id="pediatrician">Pediatrician</option>
+                                    <option value="psychiatrists" id="psychiatrists">Psychiatrists</option>
+                                    <option value="pulmonologist" id="pulmonologist">Pulmonologist</option>
+                                    <option value="radiologist" id="radiologist">Radiologist</option>
+                                    
+                                </select>
+                            </div>
+                            <div>
+                                <input type="hidden" name="doctor_hospital_id" value="{{ a }}" >
+                                </div>
+                                
+                            
+                            <button type="submit" class="btn btn-dark">Add</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+        <div class="table-responsive">
+            <br>
+            <table id="myTable"class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Doctor ID</th>
+                        <th scope="col">Doctor Name</th>
+                        <th scope="col">Phone_no</th>
+                        <th scope="col">Specialization</th>
+                        <th scope="col">View</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% for dr in doctors -%}
+                    <tr>
+                        <td>
+                            {{ dr.doctor_id }}
+                        </td>
+                        <td>
+                            <p style="text-transform: capitalize;">{{ dr.doctor_name }}</p>
+                        </td>
+                        <td>
+                            <p style="text-transform: capitalize;">{{ dr.doctor_phoneno }}</p>
+                        </td>
+                        <td>
+                            <p style="text-transform: capitalize;">{{ dr.specialization }}</p>
+                        </td>
+
+                        <td>
+
+                            <a><button role="button"
+                                    class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#viewtask">View</button></a>
+                        </td>
+                    </tr>
+
+                    {% endfor -%}
+                </tbody>
+            </table>
+
+        </div> 
+
+
+    </div>
+    </main>
+
+
+
+    {% endblock %}
