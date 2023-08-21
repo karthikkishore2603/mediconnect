@@ -31,6 +31,13 @@ def get_all_doctors() -> models.Doctor:
 def get_all_hospital() -> models.Hospital:
     return models.Hospital.query.all()
 
+def get_all_city():
+    return [i[0] for i in 
+            models.Hospital.query.with_entities(models.Hospital.hospital_city).distinct().all()]
+
+def get_hospital_by_city(city: str) -> models.Hospital:
+    return models.Hospital.query.filter_by(hospital_city=city).all()
+
 def patient_add(data: dict) -> None:
     
 

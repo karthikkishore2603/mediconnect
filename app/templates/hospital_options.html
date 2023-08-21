@@ -1,0 +1,4 @@
+<option value="select-an-option">Select an Option</option>
+{% for hospital in hospitals %}
+    <option value="{{ hospital.hospital_id }}">{{ hospital.hospital_name | capitalize }}</option>
+{% endfor %}
