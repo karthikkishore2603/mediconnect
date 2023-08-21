@@ -26,7 +26,10 @@ def create_access_token(
     return encoded_jwt
 
 def current_user_info(request: Request):
+    print(request.__dict__)
     token = request.cookies.get(constants.AUTH_TOKEN_COOKIE_NAME)
+    print("hello")
+    print(token)
     if not token:
         return
     login = get_current_user_login(token)
