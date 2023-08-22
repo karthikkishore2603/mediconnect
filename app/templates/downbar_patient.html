@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bottombar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='patient-app/patient_dashboard.css') }}">
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <link rel="stylesheet" href="bottombar.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='patient-app/patient_bottombar.css') }}">
+    <title>Dashboard</title>
 </head>
+
 <body>
     <header>
         <h1>MediConnect</h1>
@@ -34,4 +38,5 @@
         </div>
     </footer>
 </body>
+
 </html>

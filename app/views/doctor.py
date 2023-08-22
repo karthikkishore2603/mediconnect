@@ -38,6 +38,11 @@ def doctor_details_post():
         return redirect(url_for("doctor_details"))
     return redirect(url_for("doctor_details"))
 
+@app.get("/doctor/details/<doctor_id>")
+def get_doctor_by_id(doctor_id):
+    print(crud.get_doctor_by_id(doctor_id))
+    return render_template("doctor_per_detail.html", doctor = crud.get_doctor_by_id(doctor_id))
+
 @app.get("/doctor/patient")
 def doctor_patient():
     return render_template("doctor_patient.html", patients = crud.get_all_patient())

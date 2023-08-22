@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="appointment.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='patient-app/patient_appointment.css') }}">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='patient-app/patient_bottombar.css') }}">
     <title>Appointment Form</title>
 </head>
 <body>
@@ -16,18 +19,15 @@
             <form action="#" method="post">
                 <label for="location">Select your location:</label>
                 <select id="location" name="location">
-                    <option value="select-an-option">Select an Option</option>
-                    <option value="city1">City 1</option>
-                    <option value="city2">City 2</option>
-                    <option value="city3">City 3</option>
+                    <option value="select-an-option">Select an City</option>
+                    {% for location in cities %}
+                        <option value="{{ location }}">{{ location | capitalize }}</option>
+                    {% endfor %}
                 </select>
 
                 <label for="hospital">Select the hospital:</label>
                 <select id="hospital" name="hospital">
                     <option value="select-an-option">Select an Option</option>
-                    <option value="hospital1">Hospital 1</option>
-                    <option value="hospital2">Hospital 2</option>
-                    <option value="hospital3">Hospital 3</option>
                 </select>
 
                 <label for="speciality">Select the Doctor Speciality:</label>
@@ -68,11 +68,37 @@
                 </select>
 
                 <button type="submit">Book Appointment</button>
+                <br>
+                <br>
+                <br><br>
             </form>
         </section>
     </main>
+    
     <footer>
-        <p>&copy; 2023 MediConnect App. All rights reserved.</p>
+        <div class="bottombar">
+            <a href="{{ url_for('patient_dashboard' ) }}"><i class='bx bx-home-alt nav_logo'></i></a>
+            <a href="#"><i class='bx bx-user nav_logo'></i></a>
+            <a href="{{ url_for('patient_appoinment' ) }}"><i class='bx bx-briefcase nav_logo'></i></a>
+            <a href="#"><i class='bx bx-book nav_logo'></i></a>
+            <a href="#"><i class='bx bx-message-rounded nav_logo'></i></a>
+        </div>
     </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+            $(document).on('change', '#location', function () {
+                var city = $(this).val();
+
+                if (city) {
+                    $.ajax({
+                        type: 'GET',
+                        url: '/patient/appoinment/get-hospitals?city=' + city,
+                        success: function (result) {
+                            $('#hospital').html(result);
+                        }
+                    });
+                }
+            });
+    </script>
 </body>
 </html>

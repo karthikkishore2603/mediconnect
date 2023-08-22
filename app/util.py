@@ -26,13 +26,16 @@ def create_access_token(
     return encoded_jwt
 
 def current_user_info(request: Request):
+    print(request.__dict__)
     token = request.cookies.get(constants.AUTH_TOKEN_COOKIE_NAME)
+    print("hello")
+    print(token)
     if not token:
         return
     login = get_current_user_login(token)
     if not login:
         return
-    return crud.get_doctor_by_id(login.id)
+    return crud.get_hospital_by_id(login.id)
     #raise NotImplementedError
 
 def get_current_user_login(token: str) -> Union[schemas.TokenData, None]:
@@ -49,3 +52,9 @@ def get_current_user_login(token: str) -> Union[schemas.TokenData, None]:
     except JWTError:
         return None
     return token_data
+
+def is_patient_valid_password(patient_phoneno, patient_password):
+    if crud.get_patient_password(patient_phoneno) == patient_password:
+        return True
+    else:
+        return False

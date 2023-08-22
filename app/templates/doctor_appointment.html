@@ -24,6 +24,9 @@
 
         <h1 class="h2">Appointment</h1>
 
+        
+        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#add_task">Add Appointment</button>
+
         <form action="/doctor/appointment" method="post">
             <div class="input-group" style="padding-top: 10px;">
                 <input type="hidden" name="ftype" value="on" />
@@ -46,11 +49,25 @@
                 <div class="form-outline" style="padding-left: 10px;padding-bottom: 5px;">
                     <label>Specialization</label>
                     
-                <select class="form-control" name="fstype" > 
-                    <option value="">Select an Service Type</option>
-                    <option value="installation" id="installation">Installation</option>
-                    <option value="service" id="service">Service</option>
-                    <option value="warranty" id="warranty">Warranty</option>
+                    <select class="form-control" name="fstype" > 
+                        <option value="">Select an Specialization</option>
+                        <option value="audiologists" id="audiologists">Audiologists</option>
+                        <option value="cardialogist" id="cardialogist">Cardialogist</option>
+                        <option value="dentist" id="dentist">Dentist</option>
+                        <option value="diabetes" id="diabetes">Diabetes</option>
+                        <option value="endocrinologist" id="endocrinologist">Endocrinologist</option>
+                        <option value="gynaecologist" id="">Gynaecologist</option>
+                        <option value="nephrologist" id="nephrologist">Nephrologist</option>
+                        <option value="neurologist" id="neurologist">Neurologist</option>
+                        <option value="oncologists" id="oncologists">Oncologists</option>
+                        <option value="ophthalmologist" id="ophthalmologist">Ophthalmologist</option>
+                        <option value="ortho" id="ortho">Ortho</option>
+                        <option value="otolaryngologist(ENT)" id="otolaryngologist(ENT)">Otolaryngologist(ENT)</option>
+                        <option value="pediatrician" id="pediatrician">Pediatrician</option>
+                        <option value="psychiatrists" id="psychiatrists">Psychiatrists</option>
+                        <option value="pulmonologist" id="pulmonologist">Pulmonologist</option>
+                        <option value="radiologist" id="radiologist">Radiologist</option>
+                       
                 </select>
                 </div>
                 
@@ -59,6 +76,59 @@
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-search"></i>
                     </button>
+                </div>
+            </div>
+        </form>
+
+        <form id="add" method="post">
+            <div id="add_task" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="1"
+                aria-labelledby="submitIdeaBackdropLabel" aria-hidden="true">
+                <!-- Popup contents, todo, make this actual pop on the prev button is clicked -->
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="submitIdeaBackdropLabel">Add Appointment</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+             
+                            <div >
+                                <label for="location">Select your location:</label>
+                                <label>{{ hospital.hospital_id }}</label>
+                                <select id="location"class="form-control"  name="location">
+                                    <option value="select-an-option">Select an Option</option>
+                                    <option value="city1">City 1</option>
+                                    <option value="city2">City 2</option>
+                                    <option value="city3">City 3</option>
+                                </select>
+                            </div>
+                            <div >
+                                <label>Patient PhNo.</label>
+                                <input type="text"  style="text-transform: capitalize;"list="patient_phoneno" class="form-control" placeholder="Phone No"
+                                    name="patient_phoneno" required>
+                                
+                            </div>
+                            
+                            
+
+                            <div >
+                                <label>DOB</label>
+                                <input type="date"  class="form-control" name="patient_dob" required>
+                            </div>
+
+                            <div >
+                                <label>Address</label>
+                                <input type="text"  style="text-transform: capitalize;"style="text-transform: capitalize;" list="patient_address" class="form-control" placeholder="Address"
+                                    name="patient_address" required>
+                            </div>
+
+                                
+                            
+                            <button type="submit" class="btn btn-dark">Add</button>
+
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </form>
