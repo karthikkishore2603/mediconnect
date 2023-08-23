@@ -26,6 +26,7 @@
 
         
         <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#add_task">Add Appointment</button>
+        {{ error }}
 
         <form action="/doctor/appointment" method="post">
             <div class="input-group" style="padding-top: 10px;">
@@ -92,16 +93,41 @@
                         </div>
                         <div class="modal-body">
              
+                            <input type="hidden" name="appointment_hospital_id" value="{{ hospital_id }}" >
+                            
                             <div >
-                                <label for="location">Select your location:</label>
-                                <label>{{ hospital.hospital_id }}</label>
-                                <select id="location"class="form-control"  name="location">
-                                    <option value="select-an-option">Select an Option</option>
-                                    <option value="city1">City 1</option>
-                                    <option value="city2">City 2</option>
-                                    <option value="city3">City 3</option>
+                                <label>Specialization</label>
+                                <select class="form-control" name="appointment_specialization" required> 
+                                    <option value="">Select an Specialization</option>
+                                    <option value="audiologists" id="audiologists">Audiologists</option>
+                                    <option value="cardialogist" id="cardialogist">Cardialogist</option>
+                                    <option value="dentist" id="dentist">Dentist</option>
+                                    <option value="diabetes" id="diabetes">Diabetes</option>
+                                    <option value="endocrinologist" id="endocrinologist">Endocrinologist</option>
+                                    <option value="gynaecologist" id="">Gynaecologist</option>
+                                    <option value="nephrologist" id="nephrologist">Nephrologist</option>
+                                    <option value="neurologist" id="neurologist">Neurologist</option>
+                                    <option value="oncologists" id="oncologists">Oncologists</option>
+                                    <option value="ophthalmologist" id="ophthalmologist">Ophthalmologist</option>
+                                    <option value="ortho" id="ortho">Ortho</option>
+                                    <option value="otolaryngologist(ENT)" id="otolaryngologist(ENT)">Otolaryngologist(ENT)</option>
+                                    <option value="pediatrician" id="pediatrician">Pediatrician</option>
+                                    <option value="psychiatrists" id="psychiatrists">Psychiatrists</option>
+                                    <option value="pulmonologist" id="pulmonologist">Pulmonologist</option>
+                                    <option value="radiologist" id="radiologist">Radiologist</option>
+                                    
                                 </select>
                             </div>
+                            <div>
+                                <label>Doctors</label>
+                                <select class="form-control" name="appointment_doctor_id" required> 
+                                    <option value="">Select Doctor</option>
+                                    {% for hospital in doctors %}
+                                        <option value="{{ hospital.doctor_id }}">{{ hospital.doctor_name | capitalize }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
                             <div >
                                 <label>Patient PhNo.</label>
                                 <input type="text"  style="text-transform: capitalize;"list="patient_phoneno" class="form-control" placeholder="Phone No"
@@ -112,14 +138,34 @@
                             
 
                             <div >
-                                <label>DOB</label>
-                                <input type="date"  class="form-control" name="patient_dob" required>
+                                <label>Date</label>
+                                <input type="date"  class="form-control" name="appointment_date" required>
                             </div>
 
+                            
                             <div >
-                                <label>Address</label>
-                                <input type="text"  style="text-transform: capitalize;"style="text-transform: capitalize;" list="patient_address" class="form-control" placeholder="Address"
-                                    name="patient_address" required>
+                                <label>Time</label>
+                                <select id="time" class="form-control" name="appointment_time">
+                                    <option value="select-an-option">Select an Option</option>
+                                    <option value="morning">9:00AM to 11:00AM</option>
+                                    <option value="afternoon">4:00PM to 6:00PM</option>
+                                    <option value="evening">8:00PM to 10:00PM</option>
+                                </select>
+                                </div>
+
+                            <div >
+                                <label>Appointment Reason</label>
+                                <input type="text"  style="text-transform: capitalize;"style="text-transform: capitalize;" list="appointment_reason" class="form-control" placeholder="Appointment Reason"
+                                    name="appointment_reason" required>
+                            </div>
+                            <div>
+                                <label>Appointment Type</label>
+                                <select id="appointment-type" class="form-control" name="appointment_type">
+                                    <option value="select-an-option">Select an Option</option>
+                                    <option value="general">General</option>
+                                    <option value="follow-up">Follow-up</option>
+                                    <option value="special">Special</option>
+                                </select>
                             </div>
 
                                 

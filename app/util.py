@@ -26,17 +26,17 @@ def create_access_token(
     return encoded_jwt
 
 def current_user_info(request: Request):
-    print(request.__dict__)
     token = request.cookies.get(constants.AUTH_TOKEN_COOKIE_NAME)
-    print("hello")
-    print(token)
     if not token:
         return
     login = get_current_user_login(token)
     if not login:
         return
-    return crud.get_hospital_by_id(login.id)
-    #raise NotImplementedError
+    if login.user_type == "patient":
+        return crud.get_patient_by_id(login.id)
+    if login.user_type == "hospital":
+        return crud.get_hospital_by_id(login.id)
+    raise NotImplementedError
 
 def get_current_user_login(token: str) -> Union[schemas.TokenData, None]:
     try:

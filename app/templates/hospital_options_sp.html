@@ -1,0 +1,4 @@
+<option value="select-an-option">Select an Option</option>
+{% for sp in sp %}
+    <option value="{{ sp.specialization }}">{{ sp.specialization | capitalize }}</option>
+{% endfor %}

@@ -13,15 +13,45 @@ def doctor_dashboard():
 
 @app.get("/doctor/apointment")
 def doctor_apointment():
-    return render_template("doctor_appointment.html")
+    hospital_req = util.current_user_info(request)
+    return render_template("doctor_appointment.html",
+                           hospital_id=hospital_req.hospital_id,
+                           doctors = crud.get_doctors_by_hospital(hospital_req.hospital_id),
+                           hospital = crud.get_all_hospital())
+
+@app.post("/doctor/apointment")
+def doctor_apointment_post():
+    hospital_req = util.current_user_info(request)
+    data = dict(request.form)
+    patient_phno = data.get("patient_phoneno")
+    if crud.is_patient_exists(patient_phno):
+        patient_id = crud.get_patient_id(patient_phno)
+        data["appointment_patient_id"] = patient_id
+    else:
+        return render_template("doctor_appointment.html",
+                           hospital_id=hospital_req.hospital_id,
+                           doctors = crud.get_doctors_by_hospital(hospital_req.hospital_id),
+                           hospital = crud.get_all_hospital(),
+                           error="Patient not found")
+    dict.pop(data,'patient_phoneno')
+    if data.get("ftype"):
+        redirect(url_for("doctor_apointment"))
+    try:
+        crud.appointment_add(data)
+        print(data)
+    except Exception as e:
+        print(e)
+        return redirect(url_for("doctor_apointment"))
+    return redirect(url_for("doctor_apointment"))
 
 @app.get("/doctor/details")
 def doctor_details():
-    
     hospital = util.current_user_info(request)
     
-    
-    return render_template("doctor_details.html",a=hospital.hospital_id,doctors = crud.get_all_doctors()) 
+    return render_template("doctor_details.html",
+                           hospital_id=hospital.hospital_id,
+
+                           doctors = crud.get_doctors_by_hospital(hospital.hospital_id)) 
 
 @app.post("/doctor/details")
 def doctor_details_post():
